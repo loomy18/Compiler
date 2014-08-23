@@ -1,0 +1,7 @@
+data:
+main:
+	lw		arrayMY(4) $t1
+	li		$t0 5
+	sw		$t0 arrayMY(36)
+	li		$v0 10
+	syscall	

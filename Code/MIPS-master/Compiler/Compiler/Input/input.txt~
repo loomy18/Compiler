@@ -1,0 +1,3 @@
+arrayMY[] @ [3];
+arrayMy[3] @ 4;
+myInt @ arrayMy[3];

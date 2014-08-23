@@ -1,0 +1,8 @@
+data:
+arrayMY:	  .space		3
+main:
+	lw		arrayMy(12) $t1
+	li		$t0 4
+	sw		$t0 arrayMy(20)
+	li		$v0 10
+	syscall	

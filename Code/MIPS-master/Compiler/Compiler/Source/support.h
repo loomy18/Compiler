@@ -1,0 +1,215 @@
+/*
+=====================================================================
+Support
+=====================================================================
+*/
+
+#ifndef SUPPORT_H_
+#define SUPPORT_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <string.h>
+
+#define TYPE_FUNCTION  0
+
+#define TYPE_TUPLE     1
+
+#define TYPE_FLOAT     2
+
+#define TYPE_INTEGER   3
+
+#define TYPE_BOOLEAN   4
+
+#define TYPE_ARRAY     5
+
+/*
+---------------------------------------------------------------------
+Stack
+---------------------------------------------------------------------
+*/
+typedef struct Stack_t   stack;
+
+typedef struct Stack_t * Stack;
+struct Stack_t
+{
+	size_t        size;
+
+	size_t        size_;
+
+	size_t        incr_;
+
+	void **       data;
+};
+
+int Stack_Create(Stack * self);
+
+int Stack_Destroy(Stack * self);
+
+int Stack_Push(Stack self, void * data);
+
+int Stack_Pull(Stack self, void ** data);
+
+/*
+---------------------------------------------------------------------
+Function
+---------------------------------------------------------------------
+*/
+typedef struct Function_t   function;
+
+typedef struct Function_t * Function;
+struct Function_t
+{
+	int x;
+};
+
+//TODO
+
+/*
+---------------------------------------------------------------------
+Instruction
+---------------------------------------------------------------------
+*/
+typedef struct Instruction_t   instruction;
+
+typedef struct Instruction_t * Instruction;
+struct Instruction_t
+{
+	char *  label;
+
+	char *  code;
+
+	char *  argA;
+
+	char *  argB;
+
+	char *  argC;
+};
+
+int Instruction_Create(Instruction * self);
+
+int Instruction_Destroy(Instruction * self);
+
+/*
+---------------------------------------------------------------------
+Procedure
+---------------------------------------------------------------------
+*/
+typedef struct Procedure_t   procedure;
+
+typedef struct Procedure_t * Procedure;
+struct Procedure_t
+{
+	size_t        size;
+
+	size_t        size_;
+
+	size_t        incr_;
+
+	Instruction * data;
+};
+
+int Procedure_Create(Procedure * self);
+
+int Procedure_Destroy(Procedure * self);
+
+int Procedure_Push(Procedure self, Instruction instr);
+
+int Procedure_Pull(Procedure self, Instruction * instr);
+
+int Procedure_Merge(Procedure self, Procedure other);
+
+int Procedure_PushOperands(Procedure self,
+	char *  label,
+
+	char *  code,
+
+	char *  argA,
+
+	char *  argB,
+
+	char *  argC
+	);
+
+/*
+---------------------------------------------------------------------
+Result
+---------------------------------------------------------------------
+*/
+typedef struct Result_t   result;
+
+typedef struct Result_t * Result;
+struct Result_t
+{
+	int         type;
+
+	int         index;
+
+	int	    intVal;
+
+	char *      label;
+
+	Procedure   procedure;
+};
+
+int Result_Create(Result * self);
+
+int Result_Destroy(Result * self);
+
+/*
+---------------------------------------------------------------------
+Entry
+---------------------------------------------------------------------
+*/
+typedef struct Entry_t   entry;
+
+typedef struct Entry_t * Entry;
+struct Entry_t
+{
+	char  *    label;
+
+	Result     variable;
+
+	Entry      positive;
+
+	Entry      negative;
+};
+
+int Entry_Create(Entry * self);
+
+int Entry_Destroy(Entry * self);
+
+/*
+---------------------------------------------------------------------
+Table
+---------------------------------------------------------------------
+*/
+#define MAX_TABLE_BUCKETS 128
+
+typedef struct Table_t   table;
+
+typedef struct Table_t * Table;
+struct Table_t
+{
+	Entry * data;
+};
+
+int Table_Create(Table * self);
+
+int Table_Destroy(Table * self);
+
+int Table_Set(Table self, char * label, Result * swapVariable);
+
+int Table_Get(Table self, char * label, Result * swapVariable);
+
+
+#endif
+
+/*
+---------------------------------------------------------------------
+EOF
+---------------------------------------------------------------------
+*/
+
+

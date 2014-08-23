@@ -1,0 +1,1998 @@
+Nonterminals useless in grammar
+
+   array
+
+
+Terminals unused in grammar
+
+   TOKEN_PRINTL
+   TOKEN_PRINTS
+
+
+Rules useless in grammar
+
+   49 array: TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK
+
+
+State 32 conflicts: 13 shift/reduce
+State 33 conflicts: 13 shift/reduce
+State 60 conflicts: 13 shift/reduce
+State 61 conflicts: 13 shift/reduce
+State 62 conflicts: 13 shift/reduce
+State 63 conflicts: 13 shift/reduce
+State 64 conflicts: 13 shift/reduce
+State 65 conflicts: 13 shift/reduce
+State 66 conflicts: 13 shift/reduce
+State 67 conflicts: 13 shift/reduce
+State 68 conflicts: 13 shift/reduce
+State 69 conflicts: 13 shift/reduce
+State 70 conflicts: 13 shift/reduce
+State 71 conflicts: 13 shift/reduce
+State 72 conflicts: 13 shift/reduce
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: procedure
+
+    2 procedure: sentence procedure
+    3          | %empty
+
+    4 sentence: assignment TOKEN_TERMINATE
+    5         | assignarray TOKEN_TERMINATE
+    6         | print TOKEN_TERMINATE
+    7         | invocation TOKEN_TERMINATE
+    8         | condition TOKEN_TERMINATE
+
+    9 expression: relation
+   10           | relationb
+   11           | arithmetic
+   12           | variant
+
+   13 condition: relation TOKEN_IF procedure TOKEN_ELSE procedure
+   14          | relation TOKEN_IF procedure
+   15          | relation TOKEN_WHILE procedure
+
+   16 relation: expression TOKEN_EQUAL expression
+   17         | expression TOKEN_LESS expression
+   18         | expression TOKEN_LESSOREQUAL expression
+   19         | expression TOKEN_MORE expression
+   20         | expression TOKEN_MOREOREQUAL expression
+
+   21 relationb: expression TOKEN_AND expression
+   22          | expression TOKEN_OR expression
+   23          | TOKEN_NOT expression
+
+   24 arithmetic: expression TOKEN_ADD expression
+   25           | expression TOKEN_SUBTRACT expression
+   26           | expression TOKEN_MULTIPLY expression
+   27           | expression TOKEN_EXPONENTIATE expression
+   28           | expression TOKEN_DIVIDE expression
+   29           | expression TOKEN_MODULO expression
+   30           | TOKEN_SUBTRACT expression
+
+   31 variant: resolution
+   32        | literal
+
+   33 resolution: TOKEN_RSLNBEGIN expression TOKEN_RSLNBREAK
+
+   34 invocation: identifier TOKEN_TUPLEBEGIN TOKEN_TUPLEBREAK
+
+   35 assignarray: identifier TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK TOKEN_ASSIGN value
+
+   36 assignment: identifier TOKEN_ASSIGN value
+   37           | identifier TOKEN_ARRAYBEGIN TOKEN_ARRAYBREAK TOKEN_ASSIGN TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK
+   38           | identifier TOKEN_ASSIGN identifier TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK
+
+   39 value: literal
+
+   40 print: TOKEN_PRINT expression
+
+   41 literal: float
+   42        | integer
+   43        | boolean
+
+   44 float: TOKEN_FLOAT
+
+   45 integer: TOKEN_INTEGER
+
+   46 boolean: TOKEN_TRUE
+   47        | TOKEN_FALSE
+
+   48 identifier: TOKEN_ID
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+TOKEN_ID (258) 48
+TOKEN_ASSIGN (259) 35 36 37 38
+TOKEN_FLOAT (260) 44
+TOKEN_INTEGER (261) 45
+TOKEN_TRUE (262) 46
+TOKEN_FALSE (263) 47
+TOKEN_PRINT (264) 40
+TOKEN_PRINTL (265)
+TOKEN_PRINTS (266)
+TOKEN_TUPLEBEGIN (267) 34
+TOKEN_TUPLEBREAK (268) 34
+TOKEN_ARRAYBEGIN (269) 35 37 38
+TOKEN_ARRAYBREAK (270) 35 37 38
+TOKEN_RSLNBEGIN (271) 33
+TOKEN_RSLNBREAK (272) 33
+TOKEN_IF (273) 13 14
+TOKEN_ELSE (274) 13
+TOKEN_WHILE (275) 15
+TOKEN_EQUAL (276) 16
+TOKEN_LESS (277) 17
+TOKEN_LESSOREQUAL (278) 18
+TOKEN_MORE (279) 19
+TOKEN_MOREOREQUAL (280) 20
+TOKEN_AND (281) 21
+TOKEN_OR (282) 22
+TOKEN_NOT (283) 23
+TOKEN_ADD (284) 24
+TOKEN_SUBTRACT (285) 25 30
+TOKEN_MULTIPLY (286) 26
+TOKEN_EXPONENTIATE (287) 27
+TOKEN_DIVIDE (288) 28
+TOKEN_MODULO (289) 29
+TOKEN_TERMINATE (290) 4 5 6 7 8
+
+
+Nonterminals, with rules where they appear
+
+$accept (36)
+    on left: 0
+program (37)
+    on left: 1, on right: 0
+procedure (38)
+    on left: 2 3, on right: 1 2 13 14 15
+sentence (39)
+    on left: 4 5 6 7 8, on right: 2
+expression (40)
+    on left: 9 10 11 12, on right: 16 17 18 19 20 21 22 23 24 25 26
+    27 28 29 30 33 40
+condition (41)
+    on left: 13 14 15, on right: 8
+relation (42)
+    on left: 16 17 18 19 20, on right: 9 13 14 15
+relationb (43)
+    on left: 21 22 23, on right: 10
+arithmetic (44)
+    on left: 24 25 26 27 28 29 30, on right: 11
+variant (45)
+    on left: 31 32, on right: 12
+resolution (46)
+    on left: 33, on right: 31
+invocation (47)
+    on left: 34, on right: 7
+assignarray (48)
+    on left: 35, on right: 5
+assignment (49)
+    on left: 36 37 38, on right: 4
+value (50)
+    on left: 39, on right: 35 36
+print (51)
+    on left: 40, on right: 6
+literal (52)
+    on left: 41 42 43, on right: 32 39
+float (53)
+    on left: 44, on right: 41
+integer (54)
+    on left: 45, on right: 35 37 38 42
+boolean (55)
+    on left: 46 47, on right: 43
+identifier (56)
+    on left: 48, on right: 34 35 36 37 38
+
+
+State 0
+
+    0 $accept: . program $end
+
+    TOKEN_ID         shift, and go to state 1
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_PRINT      shift, and go to state 6
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    $default  reduce using rule 3 (procedure)
+
+    program      go to state 10
+    procedure    go to state 11
+    sentence     go to state 12
+    expression   go to state 13
+    condition    go to state 14
+    relation     go to state 15
+    relationb    go to state 16
+    arithmetic   go to state 17
+    variant      go to state 18
+    resolution   go to state 19
+    invocation   go to state 20
+    assignarray  go to state 21
+    assignment   go to state 22
+    print        go to state 23
+    literal      go to state 24
+    float        go to state 25
+    integer      go to state 26
+    boolean      go to state 27
+    identifier   go to state 28
+
+
+State 1
+
+   48 identifier: TOKEN_ID .
+
+    $default  reduce using rule 48 (identifier)
+
+
+State 2
+
+   44 float: TOKEN_FLOAT .
+
+    $default  reduce using rule 44 (float)
+
+
+State 3
+
+   45 integer: TOKEN_INTEGER .
+
+    $default  reduce using rule 45 (integer)
+
+
+State 4
+
+   46 boolean: TOKEN_TRUE .
+
+    $default  reduce using rule 46 (boolean)
+
+
+State 5
+
+   47 boolean: TOKEN_FALSE .
+
+    $default  reduce using rule 47 (boolean)
+
+
+State 6
+
+   40 print: TOKEN_PRINT . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 29
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 7
+
+   33 resolution: TOKEN_RSLNBEGIN . expression TOKEN_RSLNBREAK
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 31
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 8
+
+   23 relationb: TOKEN_NOT . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 32
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 9
+
+   30 arithmetic: TOKEN_SUBTRACT . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 33
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 10
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 34
+
+
+State 11
+
+    1 program: procedure .
+
+    $default  reduce using rule 1 (program)
+
+
+State 12
+
+    2 procedure: sentence . procedure
+
+    TOKEN_ID         shift, and go to state 1
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_PRINT      shift, and go to state 6
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    $default  reduce using rule 3 (procedure)
+
+    procedure    go to state 35
+    sentence     go to state 12
+    expression   go to state 13
+    condition    go to state 14
+    relation     go to state 15
+    relationb    go to state 16
+    arithmetic   go to state 17
+    variant      go to state 18
+    resolution   go to state 19
+    invocation   go to state 20
+    assignarray  go to state 21
+    assignment   go to state 22
+    print        go to state 23
+    literal      go to state 24
+    float        go to state 25
+    integer      go to state 26
+    boolean      go to state 27
+    identifier   go to state 28
+
+
+State 13
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+
+State 14
+
+    8 sentence: condition . TOKEN_TERMINATE
+
+    TOKEN_TERMINATE  shift, and go to state 49
+
+
+State 15
+
+    9 expression: relation .
+   13 condition: relation . TOKEN_IF procedure TOKEN_ELSE procedure
+   14          | relation . TOKEN_IF procedure
+   15          | relation . TOKEN_WHILE procedure
+
+    TOKEN_IF     shift, and go to state 50
+    TOKEN_WHILE  shift, and go to state 51
+
+    $default  reduce using rule 9 (expression)
+
+
+State 16
+
+   10 expression: relationb .
+
+    $default  reduce using rule 10 (expression)
+
+
+State 17
+
+   11 expression: arithmetic .
+
+    $default  reduce using rule 11 (expression)
+
+
+State 18
+
+   12 expression: variant .
+
+    $default  reduce using rule 12 (expression)
+
+
+State 19
+
+   31 variant: resolution .
+
+    $default  reduce using rule 31 (variant)
+
+
+State 20
+
+    7 sentence: invocation . TOKEN_TERMINATE
+
+    TOKEN_TERMINATE  shift, and go to state 52
+
+
+State 21
+
+    5 sentence: assignarray . TOKEN_TERMINATE
+
+    TOKEN_TERMINATE  shift, and go to state 53
+
+
+State 22
+
+    4 sentence: assignment . TOKEN_TERMINATE
+
+    TOKEN_TERMINATE  shift, and go to state 54
+
+
+State 23
+
+    6 sentence: print . TOKEN_TERMINATE
+
+    TOKEN_TERMINATE  shift, and go to state 55
+
+
+State 24
+
+   32 variant: literal .
+
+    $default  reduce using rule 32 (variant)
+
+
+State 25
+
+   41 literal: float .
+
+    $default  reduce using rule 41 (literal)
+
+
+State 26
+
+   42 literal: integer .
+
+    $default  reduce using rule 42 (literal)
+
+
+State 27
+
+   43 literal: boolean .
+
+    $default  reduce using rule 43 (literal)
+
+
+State 28
+
+   34 invocation: identifier . TOKEN_TUPLEBEGIN TOKEN_TUPLEBREAK
+   35 assignarray: identifier . TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK TOKEN_ASSIGN value
+   36 assignment: identifier . TOKEN_ASSIGN value
+   37           | identifier . TOKEN_ARRAYBEGIN TOKEN_ARRAYBREAK TOKEN_ASSIGN TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK
+   38           | identifier . TOKEN_ASSIGN identifier TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK
+
+    TOKEN_ASSIGN      shift, and go to state 56
+    TOKEN_TUPLEBEGIN  shift, and go to state 57
+    TOKEN_ARRAYBEGIN  shift, and go to state 58
+
+
+State 29
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+   40 print: TOKEN_PRINT expression .
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    $default  reduce using rule 40 (print)
+
+
+State 30
+
+    9 expression: relation .
+
+    $default  reduce using rule 9 (expression)
+
+
+State 31
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+   33 resolution: TOKEN_RSLNBEGIN expression . TOKEN_RSLNBREAK
+
+    TOKEN_RSLNBREAK     shift, and go to state 59
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+
+State 32
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   23          | TOKEN_NOT expression .
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 23 (relationb)]
+    TOKEN_LESS          [reduce using rule 23 (relationb)]
+    TOKEN_LESSOREQUAL   [reduce using rule 23 (relationb)]
+    TOKEN_MORE          [reduce using rule 23 (relationb)]
+    TOKEN_MOREOREQUAL   [reduce using rule 23 (relationb)]
+    TOKEN_AND           [reduce using rule 23 (relationb)]
+    TOKEN_OR            [reduce using rule 23 (relationb)]
+    TOKEN_ADD           [reduce using rule 23 (relationb)]
+    TOKEN_SUBTRACT      [reduce using rule 23 (relationb)]
+    TOKEN_MULTIPLY      [reduce using rule 23 (relationb)]
+    TOKEN_EXPONENTIATE  [reduce using rule 23 (relationb)]
+    TOKEN_DIVIDE        [reduce using rule 23 (relationb)]
+    TOKEN_MODULO        [reduce using rule 23 (relationb)]
+    $default            reduce using rule 23 (relationb)
+
+
+State 33
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+   30           | TOKEN_SUBTRACT expression .
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 30 (arithmetic)]
+    TOKEN_LESS          [reduce using rule 30 (arithmetic)]
+    TOKEN_LESSOREQUAL   [reduce using rule 30 (arithmetic)]
+    TOKEN_MORE          [reduce using rule 30 (arithmetic)]
+    TOKEN_MOREOREQUAL   [reduce using rule 30 (arithmetic)]
+    TOKEN_AND           [reduce using rule 30 (arithmetic)]
+    TOKEN_OR            [reduce using rule 30 (arithmetic)]
+    TOKEN_ADD           [reduce using rule 30 (arithmetic)]
+    TOKEN_SUBTRACT      [reduce using rule 30 (arithmetic)]
+    TOKEN_MULTIPLY      [reduce using rule 30 (arithmetic)]
+    TOKEN_EXPONENTIATE  [reduce using rule 30 (arithmetic)]
+    TOKEN_DIVIDE        [reduce using rule 30 (arithmetic)]
+    TOKEN_MODULO        [reduce using rule 30 (arithmetic)]
+    $default            reduce using rule 30 (arithmetic)
+
+
+State 34
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+State 35
+
+    2 procedure: sentence procedure .
+
+    $default  reduce using rule 2 (procedure)
+
+
+State 36
+
+   16 relation: expression TOKEN_EQUAL . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 60
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 37
+
+   17 relation: expression TOKEN_LESS . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 61
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 38
+
+   18 relation: expression TOKEN_LESSOREQUAL . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 62
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 39
+
+   19 relation: expression TOKEN_MORE . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 63
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 40
+
+   20 relation: expression TOKEN_MOREOREQUAL . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 64
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 41
+
+   21 relationb: expression TOKEN_AND . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 65
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 42
+
+   22 relationb: expression TOKEN_OR . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 66
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 43
+
+   24 arithmetic: expression TOKEN_ADD . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 67
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 44
+
+   25 arithmetic: expression TOKEN_SUBTRACT . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 68
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 45
+
+   26 arithmetic: expression TOKEN_MULTIPLY . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 69
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 46
+
+   27 arithmetic: expression TOKEN_EXPONENTIATE . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 70
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 47
+
+   28 arithmetic: expression TOKEN_DIVIDE . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 71
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 48
+
+   29 arithmetic: expression TOKEN_MODULO . expression
+
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    expression  go to state 72
+    relation    go to state 30
+    relationb   go to state 16
+    arithmetic  go to state 17
+    variant     go to state 18
+    resolution  go to state 19
+    literal     go to state 24
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+
+
+State 49
+
+    8 sentence: condition TOKEN_TERMINATE .
+
+    $default  reduce using rule 8 (sentence)
+
+
+State 50
+
+   13 condition: relation TOKEN_IF . procedure TOKEN_ELSE procedure
+   14          | relation TOKEN_IF . procedure
+
+    TOKEN_ID         shift, and go to state 1
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_PRINT      shift, and go to state 6
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    $default  reduce using rule 3 (procedure)
+
+    procedure    go to state 73
+    sentence     go to state 12
+    expression   go to state 13
+    condition    go to state 14
+    relation     go to state 15
+    relationb    go to state 16
+    arithmetic   go to state 17
+    variant      go to state 18
+    resolution   go to state 19
+    invocation   go to state 20
+    assignarray  go to state 21
+    assignment   go to state 22
+    print        go to state 23
+    literal      go to state 24
+    float        go to state 25
+    integer      go to state 26
+    boolean      go to state 27
+    identifier   go to state 28
+
+
+State 51
+
+   15 condition: relation TOKEN_WHILE . procedure
+
+    TOKEN_ID         shift, and go to state 1
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_PRINT      shift, and go to state 6
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    $default  reduce using rule 3 (procedure)
+
+    procedure    go to state 74
+    sentence     go to state 12
+    expression   go to state 13
+    condition    go to state 14
+    relation     go to state 15
+    relationb    go to state 16
+    arithmetic   go to state 17
+    variant      go to state 18
+    resolution   go to state 19
+    invocation   go to state 20
+    assignarray  go to state 21
+    assignment   go to state 22
+    print        go to state 23
+    literal      go to state 24
+    float        go to state 25
+    integer      go to state 26
+    boolean      go to state 27
+    identifier   go to state 28
+
+
+State 52
+
+    7 sentence: invocation TOKEN_TERMINATE .
+
+    $default  reduce using rule 7 (sentence)
+
+
+State 53
+
+    5 sentence: assignarray TOKEN_TERMINATE .
+
+    $default  reduce using rule 5 (sentence)
+
+
+State 54
+
+    4 sentence: assignment TOKEN_TERMINATE .
+
+    $default  reduce using rule 4 (sentence)
+
+
+State 55
+
+    6 sentence: print TOKEN_TERMINATE .
+
+    $default  reduce using rule 6 (sentence)
+
+
+State 56
+
+   36 assignment: identifier TOKEN_ASSIGN . value
+   38           | identifier TOKEN_ASSIGN . identifier TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK
+
+    TOKEN_ID       shift, and go to state 1
+    TOKEN_FLOAT    shift, and go to state 2
+    TOKEN_INTEGER  shift, and go to state 3
+    TOKEN_TRUE     shift, and go to state 4
+    TOKEN_FALSE    shift, and go to state 5
+
+    value       go to state 75
+    literal     go to state 76
+    float       go to state 25
+    integer     go to state 26
+    boolean     go to state 27
+    identifier  go to state 77
+
+
+State 57
+
+   34 invocation: identifier TOKEN_TUPLEBEGIN . TOKEN_TUPLEBREAK
+
+    TOKEN_TUPLEBREAK  shift, and go to state 78
+
+
+State 58
+
+   35 assignarray: identifier TOKEN_ARRAYBEGIN . integer TOKEN_ARRAYBREAK TOKEN_ASSIGN value
+   37 assignment: identifier TOKEN_ARRAYBEGIN . TOKEN_ARRAYBREAK TOKEN_ASSIGN TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK
+
+    TOKEN_INTEGER     shift, and go to state 3
+    TOKEN_ARRAYBREAK  shift, and go to state 79
+
+    integer  go to state 80
+
+
+State 59
+
+   33 resolution: TOKEN_RSLNBEGIN expression TOKEN_RSLNBREAK .
+
+    $default  reduce using rule 33 (resolution)
+
+
+State 60
+
+   16 relation: expression . TOKEN_EQUAL expression
+   16         | expression TOKEN_EQUAL expression .
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 16 (relation)]
+    TOKEN_LESS          [reduce using rule 16 (relation)]
+    TOKEN_LESSOREQUAL   [reduce using rule 16 (relation)]
+    TOKEN_MORE          [reduce using rule 16 (relation)]
+    TOKEN_MOREOREQUAL   [reduce using rule 16 (relation)]
+    TOKEN_AND           [reduce using rule 16 (relation)]
+    TOKEN_OR            [reduce using rule 16 (relation)]
+    TOKEN_ADD           [reduce using rule 16 (relation)]
+    TOKEN_SUBTRACT      [reduce using rule 16 (relation)]
+    TOKEN_MULTIPLY      [reduce using rule 16 (relation)]
+    TOKEN_EXPONENTIATE  [reduce using rule 16 (relation)]
+    TOKEN_DIVIDE        [reduce using rule 16 (relation)]
+    TOKEN_MODULO        [reduce using rule 16 (relation)]
+    $default            reduce using rule 16 (relation)
+
+
+State 61
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   17         | expression TOKEN_LESS expression .
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 17 (relation)]
+    TOKEN_LESS          [reduce using rule 17 (relation)]
+    TOKEN_LESSOREQUAL   [reduce using rule 17 (relation)]
+    TOKEN_MORE          [reduce using rule 17 (relation)]
+    TOKEN_MOREOREQUAL   [reduce using rule 17 (relation)]
+    TOKEN_AND           [reduce using rule 17 (relation)]
+    TOKEN_OR            [reduce using rule 17 (relation)]
+    TOKEN_ADD           [reduce using rule 17 (relation)]
+    TOKEN_SUBTRACT      [reduce using rule 17 (relation)]
+    TOKEN_MULTIPLY      [reduce using rule 17 (relation)]
+    TOKEN_EXPONENTIATE  [reduce using rule 17 (relation)]
+    TOKEN_DIVIDE        [reduce using rule 17 (relation)]
+    TOKEN_MODULO        [reduce using rule 17 (relation)]
+    $default            reduce using rule 17 (relation)
+
+
+State 62
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   18         | expression TOKEN_LESSOREQUAL expression .
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 18 (relation)]
+    TOKEN_LESS          [reduce using rule 18 (relation)]
+    TOKEN_LESSOREQUAL   [reduce using rule 18 (relation)]
+    TOKEN_MORE          [reduce using rule 18 (relation)]
+    TOKEN_MOREOREQUAL   [reduce using rule 18 (relation)]
+    TOKEN_AND           [reduce using rule 18 (relation)]
+    TOKEN_OR            [reduce using rule 18 (relation)]
+    TOKEN_ADD           [reduce using rule 18 (relation)]
+    TOKEN_SUBTRACT      [reduce using rule 18 (relation)]
+    TOKEN_MULTIPLY      [reduce using rule 18 (relation)]
+    TOKEN_EXPONENTIATE  [reduce using rule 18 (relation)]
+    TOKEN_DIVIDE        [reduce using rule 18 (relation)]
+    TOKEN_MODULO        [reduce using rule 18 (relation)]
+    $default            reduce using rule 18 (relation)
+
+
+State 63
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   19         | expression TOKEN_MORE expression .
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 19 (relation)]
+    TOKEN_LESS          [reduce using rule 19 (relation)]
+    TOKEN_LESSOREQUAL   [reduce using rule 19 (relation)]
+    TOKEN_MORE          [reduce using rule 19 (relation)]
+    TOKEN_MOREOREQUAL   [reduce using rule 19 (relation)]
+    TOKEN_AND           [reduce using rule 19 (relation)]
+    TOKEN_OR            [reduce using rule 19 (relation)]
+    TOKEN_ADD           [reduce using rule 19 (relation)]
+    TOKEN_SUBTRACT      [reduce using rule 19 (relation)]
+    TOKEN_MULTIPLY      [reduce using rule 19 (relation)]
+    TOKEN_EXPONENTIATE  [reduce using rule 19 (relation)]
+    TOKEN_DIVIDE        [reduce using rule 19 (relation)]
+    TOKEN_MODULO        [reduce using rule 19 (relation)]
+    $default            reduce using rule 19 (relation)
+
+
+State 64
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   20         | expression TOKEN_MOREOREQUAL expression .
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 20 (relation)]
+    TOKEN_LESS          [reduce using rule 20 (relation)]
+    TOKEN_LESSOREQUAL   [reduce using rule 20 (relation)]
+    TOKEN_MORE          [reduce using rule 20 (relation)]
+    TOKEN_MOREOREQUAL   [reduce using rule 20 (relation)]
+    TOKEN_AND           [reduce using rule 20 (relation)]
+    TOKEN_OR            [reduce using rule 20 (relation)]
+    TOKEN_ADD           [reduce using rule 20 (relation)]
+    TOKEN_SUBTRACT      [reduce using rule 20 (relation)]
+    TOKEN_MULTIPLY      [reduce using rule 20 (relation)]
+    TOKEN_EXPONENTIATE  [reduce using rule 20 (relation)]
+    TOKEN_DIVIDE        [reduce using rule 20 (relation)]
+    TOKEN_MODULO        [reduce using rule 20 (relation)]
+    $default            reduce using rule 20 (relation)
+
+
+State 65
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   21          | expression TOKEN_AND expression .
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 21 (relationb)]
+    TOKEN_LESS          [reduce using rule 21 (relationb)]
+    TOKEN_LESSOREQUAL   [reduce using rule 21 (relationb)]
+    TOKEN_MORE          [reduce using rule 21 (relationb)]
+    TOKEN_MOREOREQUAL   [reduce using rule 21 (relationb)]
+    TOKEN_AND           [reduce using rule 21 (relationb)]
+    TOKEN_OR            [reduce using rule 21 (relationb)]
+    TOKEN_ADD           [reduce using rule 21 (relationb)]
+    TOKEN_SUBTRACT      [reduce using rule 21 (relationb)]
+    TOKEN_MULTIPLY      [reduce using rule 21 (relationb)]
+    TOKEN_EXPONENTIATE  [reduce using rule 21 (relationb)]
+    TOKEN_DIVIDE        [reduce using rule 21 (relationb)]
+    TOKEN_MODULO        [reduce using rule 21 (relationb)]
+    $default            reduce using rule 21 (relationb)
+
+
+State 66
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   22          | expression TOKEN_OR expression .
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 22 (relationb)]
+    TOKEN_LESS          [reduce using rule 22 (relationb)]
+    TOKEN_LESSOREQUAL   [reduce using rule 22 (relationb)]
+    TOKEN_MORE          [reduce using rule 22 (relationb)]
+    TOKEN_MOREOREQUAL   [reduce using rule 22 (relationb)]
+    TOKEN_AND           [reduce using rule 22 (relationb)]
+    TOKEN_OR            [reduce using rule 22 (relationb)]
+    TOKEN_ADD           [reduce using rule 22 (relationb)]
+    TOKEN_SUBTRACT      [reduce using rule 22 (relationb)]
+    TOKEN_MULTIPLY      [reduce using rule 22 (relationb)]
+    TOKEN_EXPONENTIATE  [reduce using rule 22 (relationb)]
+    TOKEN_DIVIDE        [reduce using rule 22 (relationb)]
+    TOKEN_MODULO        [reduce using rule 22 (relationb)]
+    $default            reduce using rule 22 (relationb)
+
+
+State 67
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   24           | expression TOKEN_ADD expression .
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 24 (arithmetic)]
+    TOKEN_LESS          [reduce using rule 24 (arithmetic)]
+    TOKEN_LESSOREQUAL   [reduce using rule 24 (arithmetic)]
+    TOKEN_MORE          [reduce using rule 24 (arithmetic)]
+    TOKEN_MOREOREQUAL   [reduce using rule 24 (arithmetic)]
+    TOKEN_AND           [reduce using rule 24 (arithmetic)]
+    TOKEN_OR            [reduce using rule 24 (arithmetic)]
+    TOKEN_ADD           [reduce using rule 24 (arithmetic)]
+    TOKEN_SUBTRACT      [reduce using rule 24 (arithmetic)]
+    TOKEN_MULTIPLY      [reduce using rule 24 (arithmetic)]
+    TOKEN_EXPONENTIATE  [reduce using rule 24 (arithmetic)]
+    TOKEN_DIVIDE        [reduce using rule 24 (arithmetic)]
+    TOKEN_MODULO        [reduce using rule 24 (arithmetic)]
+    $default            reduce using rule 24 (arithmetic)
+
+
+State 68
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   25           | expression TOKEN_SUBTRACT expression .
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 25 (arithmetic)]
+    TOKEN_LESS          [reduce using rule 25 (arithmetic)]
+    TOKEN_LESSOREQUAL   [reduce using rule 25 (arithmetic)]
+    TOKEN_MORE          [reduce using rule 25 (arithmetic)]
+    TOKEN_MOREOREQUAL   [reduce using rule 25 (arithmetic)]
+    TOKEN_AND           [reduce using rule 25 (arithmetic)]
+    TOKEN_OR            [reduce using rule 25 (arithmetic)]
+    TOKEN_ADD           [reduce using rule 25 (arithmetic)]
+    TOKEN_SUBTRACT      [reduce using rule 25 (arithmetic)]
+    TOKEN_MULTIPLY      [reduce using rule 25 (arithmetic)]
+    TOKEN_EXPONENTIATE  [reduce using rule 25 (arithmetic)]
+    TOKEN_DIVIDE        [reduce using rule 25 (arithmetic)]
+    TOKEN_MODULO        [reduce using rule 25 (arithmetic)]
+    $default            reduce using rule 25 (arithmetic)
+
+
+State 69
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   26           | expression TOKEN_MULTIPLY expression .
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 26 (arithmetic)]
+    TOKEN_LESS          [reduce using rule 26 (arithmetic)]
+    TOKEN_LESSOREQUAL   [reduce using rule 26 (arithmetic)]
+    TOKEN_MORE          [reduce using rule 26 (arithmetic)]
+    TOKEN_MOREOREQUAL   [reduce using rule 26 (arithmetic)]
+    TOKEN_AND           [reduce using rule 26 (arithmetic)]
+    TOKEN_OR            [reduce using rule 26 (arithmetic)]
+    TOKEN_ADD           [reduce using rule 26 (arithmetic)]
+    TOKEN_SUBTRACT      [reduce using rule 26 (arithmetic)]
+    TOKEN_MULTIPLY      [reduce using rule 26 (arithmetic)]
+    TOKEN_EXPONENTIATE  [reduce using rule 26 (arithmetic)]
+    TOKEN_DIVIDE        [reduce using rule 26 (arithmetic)]
+    TOKEN_MODULO        [reduce using rule 26 (arithmetic)]
+    $default            reduce using rule 26 (arithmetic)
+
+
+State 70
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   27           | expression TOKEN_EXPONENTIATE expression .
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 27 (arithmetic)]
+    TOKEN_LESS          [reduce using rule 27 (arithmetic)]
+    TOKEN_LESSOREQUAL   [reduce using rule 27 (arithmetic)]
+    TOKEN_MORE          [reduce using rule 27 (arithmetic)]
+    TOKEN_MOREOREQUAL   [reduce using rule 27 (arithmetic)]
+    TOKEN_AND           [reduce using rule 27 (arithmetic)]
+    TOKEN_OR            [reduce using rule 27 (arithmetic)]
+    TOKEN_ADD           [reduce using rule 27 (arithmetic)]
+    TOKEN_SUBTRACT      [reduce using rule 27 (arithmetic)]
+    TOKEN_MULTIPLY      [reduce using rule 27 (arithmetic)]
+    TOKEN_EXPONENTIATE  [reduce using rule 27 (arithmetic)]
+    TOKEN_DIVIDE        [reduce using rule 27 (arithmetic)]
+    TOKEN_MODULO        [reduce using rule 27 (arithmetic)]
+    $default            reduce using rule 27 (arithmetic)
+
+
+State 71
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   28           | expression TOKEN_DIVIDE expression .
+   29           | expression . TOKEN_MODULO expression
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 28 (arithmetic)]
+    TOKEN_LESS          [reduce using rule 28 (arithmetic)]
+    TOKEN_LESSOREQUAL   [reduce using rule 28 (arithmetic)]
+    TOKEN_MORE          [reduce using rule 28 (arithmetic)]
+    TOKEN_MOREOREQUAL   [reduce using rule 28 (arithmetic)]
+    TOKEN_AND           [reduce using rule 28 (arithmetic)]
+    TOKEN_OR            [reduce using rule 28 (arithmetic)]
+    TOKEN_ADD           [reduce using rule 28 (arithmetic)]
+    TOKEN_SUBTRACT      [reduce using rule 28 (arithmetic)]
+    TOKEN_MULTIPLY      [reduce using rule 28 (arithmetic)]
+    TOKEN_EXPONENTIATE  [reduce using rule 28 (arithmetic)]
+    TOKEN_DIVIDE        [reduce using rule 28 (arithmetic)]
+    TOKEN_MODULO        [reduce using rule 28 (arithmetic)]
+    $default            reduce using rule 28 (arithmetic)
+
+
+State 72
+
+   16 relation: expression . TOKEN_EQUAL expression
+   17         | expression . TOKEN_LESS expression
+   18         | expression . TOKEN_LESSOREQUAL expression
+   19         | expression . TOKEN_MORE expression
+   20         | expression . TOKEN_MOREOREQUAL expression
+   21 relationb: expression . TOKEN_AND expression
+   22          | expression . TOKEN_OR expression
+   24 arithmetic: expression . TOKEN_ADD expression
+   25           | expression . TOKEN_SUBTRACT expression
+   26           | expression . TOKEN_MULTIPLY expression
+   27           | expression . TOKEN_EXPONENTIATE expression
+   28           | expression . TOKEN_DIVIDE expression
+   29           | expression . TOKEN_MODULO expression
+   29           | expression TOKEN_MODULO expression .
+
+    TOKEN_EQUAL         shift, and go to state 36
+    TOKEN_LESS          shift, and go to state 37
+    TOKEN_LESSOREQUAL   shift, and go to state 38
+    TOKEN_MORE          shift, and go to state 39
+    TOKEN_MOREOREQUAL   shift, and go to state 40
+    TOKEN_AND           shift, and go to state 41
+    TOKEN_OR            shift, and go to state 42
+    TOKEN_ADD           shift, and go to state 43
+    TOKEN_SUBTRACT      shift, and go to state 44
+    TOKEN_MULTIPLY      shift, and go to state 45
+    TOKEN_EXPONENTIATE  shift, and go to state 46
+    TOKEN_DIVIDE        shift, and go to state 47
+    TOKEN_MODULO        shift, and go to state 48
+
+    TOKEN_EQUAL         [reduce using rule 29 (arithmetic)]
+    TOKEN_LESS          [reduce using rule 29 (arithmetic)]
+    TOKEN_LESSOREQUAL   [reduce using rule 29 (arithmetic)]
+    TOKEN_MORE          [reduce using rule 29 (arithmetic)]
+    TOKEN_MOREOREQUAL   [reduce using rule 29 (arithmetic)]
+    TOKEN_AND           [reduce using rule 29 (arithmetic)]
+    TOKEN_OR            [reduce using rule 29 (arithmetic)]
+    TOKEN_ADD           [reduce using rule 29 (arithmetic)]
+    TOKEN_SUBTRACT      [reduce using rule 29 (arithmetic)]
+    TOKEN_MULTIPLY      [reduce using rule 29 (arithmetic)]
+    TOKEN_EXPONENTIATE  [reduce using rule 29 (arithmetic)]
+    TOKEN_DIVIDE        [reduce using rule 29 (arithmetic)]
+    TOKEN_MODULO        [reduce using rule 29 (arithmetic)]
+    $default            reduce using rule 29 (arithmetic)
+
+
+State 73
+
+   13 condition: relation TOKEN_IF procedure . TOKEN_ELSE procedure
+   14          | relation TOKEN_IF procedure .
+
+    TOKEN_ELSE  shift, and go to state 81
+
+    $default  reduce using rule 14 (condition)
+
+
+State 74
+
+   15 condition: relation TOKEN_WHILE procedure .
+
+    $default  reduce using rule 15 (condition)
+
+
+State 75
+
+   36 assignment: identifier TOKEN_ASSIGN value .
+
+    $default  reduce using rule 36 (assignment)
+
+
+State 76
+
+   39 value: literal .
+
+    $default  reduce using rule 39 (value)
+
+
+State 77
+
+   38 assignment: identifier TOKEN_ASSIGN identifier . TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK
+
+    TOKEN_ARRAYBEGIN  shift, and go to state 82
+
+
+State 78
+
+   34 invocation: identifier TOKEN_TUPLEBEGIN TOKEN_TUPLEBREAK .
+
+    $default  reduce using rule 34 (invocation)
+
+
+State 79
+
+   37 assignment: identifier TOKEN_ARRAYBEGIN TOKEN_ARRAYBREAK . TOKEN_ASSIGN TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK
+
+    TOKEN_ASSIGN  shift, and go to state 83
+
+
+State 80
+
+   35 assignarray: identifier TOKEN_ARRAYBEGIN integer . TOKEN_ARRAYBREAK TOKEN_ASSIGN value
+
+    TOKEN_ARRAYBREAK  shift, and go to state 84
+
+
+State 81
+
+   13 condition: relation TOKEN_IF procedure TOKEN_ELSE . procedure
+
+    TOKEN_ID         shift, and go to state 1
+    TOKEN_FLOAT      shift, and go to state 2
+    TOKEN_INTEGER    shift, and go to state 3
+    TOKEN_TRUE       shift, and go to state 4
+    TOKEN_FALSE      shift, and go to state 5
+    TOKEN_PRINT      shift, and go to state 6
+    TOKEN_RSLNBEGIN  shift, and go to state 7
+    TOKEN_NOT        shift, and go to state 8
+    TOKEN_SUBTRACT   shift, and go to state 9
+
+    $default  reduce using rule 3 (procedure)
+
+    procedure    go to state 85
+    sentence     go to state 12
+    expression   go to state 13
+    condition    go to state 14
+    relation     go to state 15
+    relationb    go to state 16
+    arithmetic   go to state 17
+    variant      go to state 18
+    resolution   go to state 19
+    invocation   go to state 20
+    assignarray  go to state 21
+    assignment   go to state 22
+    print        go to state 23
+    literal      go to state 24
+    float        go to state 25
+    integer      go to state 26
+    boolean      go to state 27
+    identifier   go to state 28
+
+
+State 82
+
+   38 assignment: identifier TOKEN_ASSIGN identifier TOKEN_ARRAYBEGIN . integer TOKEN_ARRAYBREAK
+
+    TOKEN_INTEGER  shift, and go to state 3
+
+    integer  go to state 86
+
+
+State 83
+
+   37 assignment: identifier TOKEN_ARRAYBEGIN TOKEN_ARRAYBREAK TOKEN_ASSIGN . TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK
+
+    TOKEN_ARRAYBEGIN  shift, and go to state 87
+
+
+State 84
+
+   35 assignarray: identifier TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK . TOKEN_ASSIGN value
+
+    TOKEN_ASSIGN  shift, and go to state 88
+
+
+State 85
+
+   13 condition: relation TOKEN_IF procedure TOKEN_ELSE procedure .
+
+    $default  reduce using rule 13 (condition)
+
+
+State 86
+
+   38 assignment: identifier TOKEN_ASSIGN identifier TOKEN_ARRAYBEGIN integer . TOKEN_ARRAYBREAK
+
+    TOKEN_ARRAYBREAK  shift, and go to state 89
+
+
+State 87
+
+   37 assignment: identifier TOKEN_ARRAYBEGIN TOKEN_ARRAYBREAK TOKEN_ASSIGN TOKEN_ARRAYBEGIN . integer TOKEN_ARRAYBREAK
+
+    TOKEN_INTEGER  shift, and go to state 3
+
+    integer  go to state 90
+
+
+State 88
+
+   35 assignarray: identifier TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK TOKEN_ASSIGN . value
+
+    TOKEN_FLOAT    shift, and go to state 2
+    TOKEN_INTEGER  shift, and go to state 3
+    TOKEN_TRUE     shift, and go to state 4
+    TOKEN_FALSE    shift, and go to state 5
+
+    value    go to state 91
+    literal  go to state 76
+    float    go to state 25
+    integer  go to state 26
+    boolean  go to state 27
+
+
+State 89
+
+   38 assignment: identifier TOKEN_ASSIGN identifier TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK .
+
+    $default  reduce using rule 38 (assignment)
+
+
+State 90
+
+   37 assignment: identifier TOKEN_ARRAYBEGIN TOKEN_ARRAYBREAK TOKEN_ASSIGN TOKEN_ARRAYBEGIN integer . TOKEN_ARRAYBREAK
+
+    TOKEN_ARRAYBREAK  shift, and go to state 92
+
+
+State 91
+
+   35 assignarray: identifier TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK TOKEN_ASSIGN value .
+
+    $default  reduce using rule 35 (assignarray)
+
+
+State 92
+
+   37 assignment: identifier TOKEN_ARRAYBEGIN TOKEN_ARRAYBREAK TOKEN_ASSIGN TOKEN_ARRAYBEGIN integer TOKEN_ARRAYBREAK .
+
+    $default  reduce using rule 37 (assignment)

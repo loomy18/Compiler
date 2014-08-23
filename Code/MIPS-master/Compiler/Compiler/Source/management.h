@@ -1,0 +1,78 @@
+/*
+=====================================================================
+Management
+=====================================================================
+*/
+
+#ifndef MANAGEMENT_H_
+#define MANAGEMENT_H_
+
+#include "support.h"
+
+typedef struct pair PAIR;
+typedef struct pair * Pair;
+struct pair
+{
+	char * name;
+
+	Result data;
+};
+
+int     Management_Initiate();
+
+int     Management_Terminate();
+
+int     Management_Finalize();
+
+int     Management_Serialize(FILE * file);
+
+
+void    Management_LogStream(FILE * file);
+
+void    Management_LogError(char * message);
+
+void    Management_LogWarning(char * message);
+
+void    Management_LogAlert(char * message);
+
+void    Management_LogSemantic(char * message);
+
+
+char *  Management_GetUniqueLabel();
+
+int     Management_GetRegister();
+
+char *  Management_GetRegisterName(int index);
+
+int     Management_GetRegisterf();
+
+char *  Management_GetRegisterNamef(int index);
+
+void    Management_FreeRegister(int index);
+
+void    Management_FreeRegisterf(int index);
+
+
+void    Management_PushVariables();
+
+void    Managament_PullVariables();
+
+int     Management_SetVariable(char * label, Result resultB);
+
+int     Management_GetVariable(char * label, Result * resultB);
+
+int     Management_PushFunction(char * label, Result resultA);
+
+void    Management_MergeProcedure(Procedure statement);
+
+void    Management_MergeData(Procedure statement);
+
+#endif
+
+/*
+=====================================================================
+EOF
+=====================================================================
+*/
+
+

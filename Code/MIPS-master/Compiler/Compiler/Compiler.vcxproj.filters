@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Generated">
+      <UniqueIdentifier>{eed954dd-6dc8-44cc-aade-efe83f3b7409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Generated">
+      <UniqueIdentifier>{28f3ca7c-9527-4382-bebe-f0c7fb8062c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script Files">
+      <UniqueIdentifier>{90cec95d-a13a-4416-a2bf-a5d60c8eb58e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Demos">
+      <UniqueIdentifier>{eb44469d-d94c-4149-8b2e-4594fe7fd68a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Demos\Input">
+      <UniqueIdentifier>{27ff2a28-d068-4fcf-9309-33232e5f866e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Demos\Output">
+      <UniqueIdentifier>{ba3c098a-1de9-41ef-8557-85818bab0bbe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\compiler.output">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Source\compiler.l">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Source\compiler.y">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Makefile">
+      <Filter>Script Files</Filter>
+    </None>
+    <None Include="unix_build">
+      <Filter>Script Files</Filter>
+    </None>
+    <None Include="unix_compile">
+      <Filter>Script Files</Filter>
+    </None>
+    <None Include="unix_run">
+      <Filter>Script Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\management.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\semantics.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\support.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\compiler.tab.c">
+      <Filter>Source Files\Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\lex.yy.c">
+      <Filter>Source Files\Generated</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\management.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\semantics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\support.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\compiler.tab.h">
+      <Filter>Header Files\Generated</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Output\listing.txt">
+      <Filter>Resource Files\Demos</Filter>
+    </Text>
+    <Text Include="Input\input.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Output\output.txt">
+      <Filter>Resource Files\Demos\Output</Filter>
+    </Text>
+    <Text Include="ScratchPad.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Input\demo_a.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_b.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_c.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_d.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_e.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_f.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_g.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_h.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_i.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_j.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_k.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_l.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_m.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_n.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_o.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_p.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_q.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+    <Text Include="Input\demo_r.txt">
+      <Filter>Resource Files\Demos\Input</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

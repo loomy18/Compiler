@@ -1,0 +1,56 @@
+#!/bin/bash
+
+clear
+
+echo
+echo [!] Compiler - Run
+echo -----------------------------------------------
+date
+
+echo
+echo
+echo \< PREPARING \>
+echo
+
+make preclean
+cd Source
+
+echo
+echo
+echo \< GENERATING PARSER \>
+echo
+
+bison -d --verbose compiler.y
+
+echo
+echo
+echo \< GENERATING LEXER \>
+echo
+
+flex compiler.l
+cd ..
+
+echo
+echo
+echo \< BUILDING COMPILER \>
+echo
+
+make
+
+echo
+echo
+echo \< EXECUTING COMPILER \>
+echo
+
+#./Compiler Input/input.txt Output/output.txt Input/listing.txt
+./Compiler Input/input.txt Output/output.txt
+
+make postclean
+
+echo
+echo
+echo \< DONE \>
+echo
+echo -----------------------------------------------
+echo
+

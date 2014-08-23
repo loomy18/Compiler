@@ -1,0 +1,28 @@
+		///* divide values */
+		//Procedure_PushOperands(resultA->procedure,
+		//	/* label */ NULL,
+		//	/* code  */ "div",
+		//	/* argA  */ Management_GetRegisterName(resultIndex),
+		//	/* argB  */ Management_GetRegisterName(resultA->index),
+		//	/* argC  */ Management_GetRegisterName(resultC->index)
+		//	);
+
+		///* aquire remainder from HI */
+		//Procedure_PushOperands(resultA->procedure,
+		//	/* label */ NULL,
+		//	/* code  */ "mfhi",
+		//	/* argA  */ Management_GetRegisterName(resultIndex),
+		//	/* argB  */ NULL,
+		//	/* argC  */ NULL
+		//	);
+
+					printf("here");
+	Result r, g = NULL;
+	Result_Create(&r);
+		printf("here");
+	r->type = 2;
+	printf("here");
+	Table_Set(t, "hayden", &r);
+
+	Table_Get(t, "hayden", &g);
+	printf("%i\n", g->type);
